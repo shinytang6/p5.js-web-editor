@@ -12,12 +12,33 @@ class ConsoleInput extends React.Component {
 
   componentDidMount() {
     this._cm = CodeMirror(this.codemirrorContainer, { // eslint-disable-line
-      styleActiveLine: true,
-      value: 'qss'
+      maxLines: 1
     });
 
-    this._cm.on('change', () => {
+    this._cm.on('change', (action) => {
       console.log(this._cm.getValue());
+      // this._cm.setValue('', 0);
+    });
+
+    this._cm.on('keydown', (_cm, e) => {
+      if (e.keyCode === 13) {
+        this._cm.setValue('', 0);
+      }
+    });
+
+    this._cm.on('beforeChange', (cm, changeObj) => {
+      const typedNewLine = changeObj.origin === '+input' && typeof changeObj.text === 'object' && changeObj.text.join('') === '';
+      if (typedNewLine) {
+        return changeObj.cancel();
+      }
+
+      const pastedNewLine = changeObj.origin === 'paste' && typeof changeObj.text === 'object' && changeObj.text.length > 1;
+      if (pastedNewLine) {
+        const newText = changeObj.text.join(' ');
+
+        return changeObj.update(null, null, [newText]);
+      }
+      return null;
     });
   }
 
