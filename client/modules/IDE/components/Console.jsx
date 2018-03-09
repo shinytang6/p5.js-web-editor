@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import InlineSVG from 'react-inlinesvg';
 import classNames from 'classnames';
+import ConsoleInput from './ConsoleInput';
 
 const upArrowUrl = require('../../../images/up-arrow.svg');
 const downArrowUrl = require('../../../images/down-arrow.svg');
@@ -37,6 +38,7 @@ class Console extends React.Component {
             </button>
           </div>
         </div>
+        <ConsoleInput />
         <div ref={(element) => { this.consoleMessages = element; }} className="preview-console__messages">
           {this.props.consoleEvents.map((consoleEvent) => {
             const args = consoleEvent.arguments;
@@ -49,9 +51,7 @@ class Console extends React.Component {
               );
             }
             return (
-              <div key={consoleEvent.id} className={`preview-console__${method}`}>
-                {Object.keys(args).map(key => <span key={`${consoleEvent.id}-${key}`}>{args[key]}</span>)}
-              </div>
+              <div />
             );
           })}
         </div>
