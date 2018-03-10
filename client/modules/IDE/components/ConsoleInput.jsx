@@ -16,12 +16,17 @@ class ConsoleInput extends React.Component {
     });
 
     this._cm.on('change', (action) => {
-      console.log(this._cm.getValue());
+      // console.log(this._cm.getValue());
       // this._cm.setValue('', 0);
     });
 
     this._cm.on('keydown', (_cm, e) => {
       if (e.keyCode === 13) {
+        window.parent.postMessage([{
+          method: 'log',
+          arguments: this._cm.getValue(),
+          source: 'console'
+        }], '*');
         this._cm.setValue('', 0);
       }
     });

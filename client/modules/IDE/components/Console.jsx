@@ -38,7 +38,6 @@ class Console extends React.Component {
             </button>
           </div>
         </div>
-        <ConsoleInput />
         <div ref={(element) => { this.consoleMessages = element; }} className="preview-console__messages">
           {this.props.consoleEvents.map((consoleEvent) => {
             const args = consoleEvent.arguments;
@@ -51,10 +50,13 @@ class Console extends React.Component {
               );
             }
             return (
-              <div />
+              <div key={consoleEvent.id} className={`preview-console__${method}`}>
+                {Object.keys(args).map(key => <span key={`${consoleEvent.id}-${key}`}>{args[key]}</span>)}
+              </div>
             );
           })}
         </div>
+        <ConsoleInput />
       </div>
     );
   }

@@ -16,6 +16,7 @@ import {
   EXTERNAL_LINK_REGEX,
   NOT_EXTERNAL_LINK_REGEX
 } from '../../../../server/utils/fileUtils';
+import handleConsoleExpressions from '../../../utils/evaluateConsole';
 
 const decomment = require('decomment');
 
@@ -92,9 +93,19 @@ class PreviewFrame extends React.Component {
     }
 
     window.addEventListener('message', (messageEvent) => {
-      console.log(messageEvent);
+      // console.log(messageEvent);
+      let consoleInfo = '';
       messageEvent.data.forEach((message) => {
         const args = message.arguments;
+        const source = message.source;
+        if (source === 'console') {
+          consoleInfo = handleConsoleExpressions(args);
+          if (consoleInfo === undefined) {
+            consoleInfo = 'fuck';
+          }
+          message.arguments = consoleInfo.toString();
+          console.log(message.arguments);
+        }
         Object.keys(args).forEach((key) => {
           if (args[key].includes('Exiting potential infinite loop')) {
             this.props.stopSketch();
@@ -102,6 +113,8 @@ class PreviewFrame extends React.Component {
           }
         });
       });
+      // messageEvent.data[0].arguments = consoleInfo;
+      // console.log(messageEvent.data);
       this.props.dispatchConsoleEvent(messageEvent.data);
     });
   }
