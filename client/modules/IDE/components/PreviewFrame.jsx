@@ -93,7 +93,7 @@ class PreviewFrame extends React.Component {
     }
 
     window.addEventListener('message', (messageEvent) => {
-      // console.log(messageEvent);
+      console.log(messageEvent);
       let consoleInfo = '';
       messageEvent.data.forEach((message) => {
         const args = message.arguments;
@@ -101,10 +101,11 @@ class PreviewFrame extends React.Component {
         if (source === 'console') {
           consoleInfo = handleConsoleExpressions(args);
           if (consoleInfo === undefined) {
-            consoleInfo = 'fuck';
+            consoleInfo = args;
           }
+          alert(consoleInfo);
           message.arguments = consoleInfo.toString();
-          console.log(message.arguments);
+          // console.log(message.arguments);
         }
         Object.keys(args).forEach((key) => {
           if (args[key].includes('Exiting potential infinite loop')) {

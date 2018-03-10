@@ -6,6 +6,7 @@ import ConsoleInput from './ConsoleInput';
 
 const upArrowUrl = require('../../../images/up-arrow.svg');
 const downArrowUrl = require('../../../images/down-arrow.svg');
+const rightArrowUrl = require('../../../images/right-arrow.svg');
 
 class Console extends React.Component {
   componentDidUpdate() {
@@ -51,6 +52,7 @@ class Console extends React.Component {
             }
             return (
               <div key={consoleEvent.id} className={`preview-console__${method}`}>
+                <InlineSVG src={rightArrowUrl} className="console-arrow" />
                 {Object.keys(args).map(key => <span key={`${consoleEvent.id}-${key}`}>{args[key]}</span>)}
               </div>
             );
