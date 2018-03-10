@@ -23,6 +23,7 @@
 			color: getThemifyVariable('secondary-text-color');
 		}
 		flex: 1 0 auto;
+		padding: 2px;
 	}
 
 	.preview-console__undefined {
@@ -40,6 +41,14 @@
 	.preview-console__warn {
 		color: $console-warn-color;
 		flex: 1 0 auto;
+	}
+
+	.console-arrow {
+		padding-right: 5px;
+		svg {
+			width: 10px !important;
+			height: 10px !important;
+		}
 	}
 }
 
