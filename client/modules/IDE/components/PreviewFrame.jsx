@@ -103,7 +103,6 @@ class PreviewFrame extends React.Component {
           if (consoleInfo === undefined) {
             consoleInfo = args;
           }
-          alert(consoleInfo);
           message.arguments = consoleInfo.toString();
           // console.log(message.arguments);
         }
