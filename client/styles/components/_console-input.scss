@@ -1,0 +1,22 @@
+.console__input {
+  padding-left: 1em;
+  position: relative;
+  margin-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.console__chevron {
+  left: 4px;
+  position: absolute;
+  top: 0;
+}
+
+.console__editor {
+  margin-left: 8px;
+  height: 20px;
+}
+
+.console__editor .CodeMirror {
+  border: none;
+  // background-color: #4f4f4f;
+}

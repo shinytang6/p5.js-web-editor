@@ -37,6 +37,11 @@ export const hijackConsoleErrorsScript = (offs) => {
         }], '*');
       return false;
     };
+
+    window.parent.onerror = function (msg, url, lineNumber, columnNo, error) {
+      alert(msg);
+      return false;
+    };
   `;
   return s;
 };

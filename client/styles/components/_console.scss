@@ -18,6 +18,12 @@
 	}
 
 	.preview-console__message {
+		.console__chevron {
+			left: 4px;
+			position: absolute;
+			top: 0;
+		}
+
 		@include themify() {
 			color: getThemifyVariable('console-color');
 		}
@@ -117,4 +123,9 @@
 			background-color: getThemifyVariable('console-error-background-color');
 		}
 	}
+}
+
+.preview-console__body {
+	display: flex;
+	flex-direction: column-reverse;
 }
