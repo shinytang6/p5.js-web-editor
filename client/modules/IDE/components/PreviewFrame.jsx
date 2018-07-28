@@ -100,6 +100,9 @@ class PreviewFrame extends React.Component {
 
           consoleInfo = handleConsoleExpressions(args);
           Unhook(window.console);
+          if (!consoleInfo) {
+            return false;
+          }
           message.expression = args;
           message.arguments = Array.of(consoleInfo);
         }
