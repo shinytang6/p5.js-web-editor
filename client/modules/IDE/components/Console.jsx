@@ -106,7 +106,7 @@ class Console extends React.Component {
                 );
               }
               return (
-                <div className="preview-console__output">
+                <div className="preview-console__output" key={consoleEvent.id}>
                   { expression &&
                     <div className="preview-console__expression">
                       <InlineSVG src={rightArrowUrl} className="console__chevron" />
