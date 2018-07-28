@@ -16,20 +16,6 @@
 		position:relative;
 		text-align:left;
 	}
-
-	.preview-console__message, .preview-console__expression {
-		.console__chevron {
-			left: 4px;
-			position: absolute;
-			top: 0;
-		}
-
-		@include themify() {
-			color: getThemifyVariable('console-color');
-		}
-		flex: 1 0 auto;
-		position: relative;
-	}
 }
 
 .preview-console__header {
@@ -93,43 +79,75 @@
 	}
 }
 
+.preview-console__logged-times {
+	font-size: #{10 / $base-font-size}rem;
+	font-weight: bold;
+	margin: #{2 / $base-font-size}rem 0 0 #{8 / $base-font-size}rem;
+	border-radius: 10px;
+	padding: #{1 / $base-font-size}rem #{4 / $base-font-size}rem;
+	z-index: 100;
+	left: 0;
+	position: absolute;
+
+	.preview-console__message--info &, .preview-console__message--log & {
+		@include themify() {
+			background-color: getThemifyVariable('console-info-background-color');
+		}
+	}
+	.preview-console__message--warn & {
+		@include themify() {
+			background-color: getThemifyVariable('console-warn-background-color');
+		}
+	}
+	.preview-console__message--debug & {
+		@include themify() {
+			background-color: getThemifyVariable('console-debug-background-color');
+		}
+	}
+	.preview-console__message--error & {
+		@include themify() {
+			background-color: getThemifyVariable('console-error-background-color');
+		}
+	}
+}
+
 .preview-console__body {
 	display: flex;
 	flex-direction: column-reverse;
 
 	.preview-console__output .preview-console__expression div {
-		margin-left: 30px;
+		margin-left: 35px;
+		line-height: 22px;
+		font-size: 12px;
+		font-family: Consolas,Lucida Console,Courier New,monospace;
+		@include themify() {
+			color: getThemifyVariable('console-color');	
+		}
 	}
 
-	.preview-console__output .preview-console__logged-times {
-		font-size: #{10 / $base-font-size}rem;
-		font-weight: bold;
-		margin: #{2 / $base-font-size}rem 0 0 #{8 / $base-font-size}rem;
-		border-radius: 10px;
-		padding: #{1 / $base-font-size}rem #{4 / $base-font-size}rem;
-		z-index: 100;
-		left: 0;
-		position: absolute;
+	.preview-console__message, .preview-console__expression {
+		.console__chevron {
+			left: 10px;
+			position: absolute;
+			top: 2px;
+			& svg {
+		    	width: 6px;
+		    	height: 10px;
+		  	}
+		  	& g {
+		  		@include themify() {
+					fill: getThemifyVariable('console-chevron-color');	
+				}
+			}
+		}
+		height: 22px;
+		flex: 1 0 auto;
+		position: relative;
+	}
 
-		.preview-console__message--info &, .preview-console__message--log & {
-			@include themify() {
-				background-color: getThemifyVariable('console-info-background-color');
-			}
-		}
-		.preview-console__message--warn & {
-			@include themify() {
-				background-color: getThemifyVariable('console-warn-background-color');
-			}
-		}
-		.preview-console__message--debug & {
-			@include themify() {
-				background-color: getThemifyVariable('console-debug-background-color');
-			}
-		}
-		.preview-console__message--error & {
-			@include themify() {
-				background-color: getThemifyVariable('console-error-background-color');
-			}
+	.preview-console__message {
+		@include themify() {
+			color: getThemifyVariable('console-logged-times-color');
 		}
 	}
 }

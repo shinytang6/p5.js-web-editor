@@ -15,7 +15,7 @@ class ConsoleInput extends React.Component {
   componentDidMount() {
     this._cm = CodeMirror(this.codemirrorContainer, { // eslint-disable-line
       // lineNumbers: true
-      theme: 'p5-light',
+      theme: 'p5-console',
       scrollbarStyle: null
     });
 
@@ -86,7 +86,7 @@ class ConsoleInput extends React.Component {
       <div
         className="console__input"
       >
-        <InlineSVG src={rightArrowUrl} className="console__chevron" />
+        <InlineSVG src={rightArrowUrl} className="console-active__chevron" />
         <div ref={(element) => { this.codemirrorContainer = element; }} className="console__editor" />
       </div>
     );

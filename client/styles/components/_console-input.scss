@@ -1,14 +1,22 @@
 .console__input {
-  padding-left: 1em;
+  padding-left: 20px;
   position: relative;
-  margin-top: 0.5em;
-  padding-bottom: 0.5em;
+  height: 22px;
 }
 
-.console__chevron {
-  left: 4px;
+.console__input .console-active__chevron {
+  left: 10px;
   position: absolute;
-  top: 0;
+  top: 2px;
+  & svg {
+    width: 6px;
+    height: 10px;
+  }
+  & g {
+    @include themify() {
+      fill: getThemifyVariable('console-active-chevron-color');  
+    }
+  }
 }
 
 .console__editor {
@@ -18,5 +26,14 @@
 
 .console__editor .CodeMirror {
   border: none;
-  // background-color: #4f4f4f;
+  font-family: Consolas,Lucida Console,Courier New,monospace;
+  @include themify() {
+    background-color: getThemifyVariable('console-background-color');
+  }
+
+  .CodeMirror-line {
+    @include themify() {
+      color: getThemifyVariable('primary-text-color');
+    }
+  }
 }
