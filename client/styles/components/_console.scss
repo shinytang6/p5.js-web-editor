@@ -17,7 +17,13 @@
 		text-align:left;
 	}
 
-	.preview-console__message {
+	.preview-console__message, .preview-console__expression {
+		.console__chevron {
+			left: 4px;
+			position: absolute;
+			top: 0;
+		}
+
 		@include themify() {
 			color: getThemifyVariable('console-color');
 		}
@@ -117,4 +123,13 @@
 			background-color: getThemifyVariable('console-error-background-color');
 		}
 	}
+}
+
+.preview-console__body {
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+.preview-console__expression div {
+	margin-left: 30px;
 }
