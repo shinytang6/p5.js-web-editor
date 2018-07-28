@@ -99,8 +99,8 @@ class PreviewFrame extends React.Component {
           }, LOGWAIT);
 
           consoleInfo = handleConsoleExpressions(args);
-
           Unhook(window.console);
+          message.expression = args;
           message.arguments = Array.of(consoleInfo);
         }
         let hasInfiniteLoop = false;

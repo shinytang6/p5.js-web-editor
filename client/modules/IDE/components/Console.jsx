@@ -75,6 +75,7 @@ class Console extends React.Component {
           <div ref={(element) => { this.consoleMessages = element; }} className="preview-console__messages">
             {this.props.consoleEvents.map((consoleEvent) => {
               const { arguments: args, method, times } = consoleEvent;
+              const { expression, source } = consoleEvent;
               const { theme } = this.props;
               Object.assign(consoleEvent, { data: this.formatData(args) });
               if (Object.keys(args).length === 0) {
@@ -85,15 +86,25 @@ class Console extends React.Component {
                 );
               }
               return (
-                <div key={consoleEvent.id} className={`preview-console__message preview-console__message--${method}`}>
-                  <InlineSVG src={leftArrowUrl} className="console__chevron" />
-                  { times > 1 &&
-                    <div className="preview-console__logged-times">{times}</div>
+                <div className="preview-console__output">
+                  { expression &&
+                    <div className="preview-console__expression">
+                      <InlineSVG src={rightArrowUrl} className="console__chevron" />
+                      <div>{expression}</div>
+                    </div>
                   }
-                  <ConsoleFeed
-                    styles={this.getConsoleFeedStyle(theme, times)}
-                    logs={Array.of(consoleEvent)}
-                  />
+                  <div key={consoleEvent.id} className={`preview-console__message preview-console__message--${method}`}>
+                    { source === 'console' &&
+                      <InlineSVG src={leftArrowUrl} className="console__chevron" />
+                    }
+                    { times > 1 &&
+                      <div className="preview-console__logged-times">{times}</div>
+                    }
+                    <ConsoleFeed
+                      styles={this.getConsoleFeedStyle(theme, times)}
+                      logs={Array.of(consoleEvent)}
+                    />
+                  </div>
                 </div>
               );
             })}
