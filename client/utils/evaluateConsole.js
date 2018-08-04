@@ -5,7 +5,6 @@ let evalNext = createScopedEvaluationChain((next) => {
 });
 
 export default function handleConsoleExpressions(expression) {
-  // alert(evalNext(expression));
   try {
     return evalNext(expression);
   } catch (e) {
